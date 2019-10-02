@@ -1,0 +1,40 @@
+{
+  "name": "juggler",
+  "version": "0.0.1",
+  "description": "A library for building non-blocking applications with TypeScript",
+  "main": "dist/index.js",
+  "repository": "git",
+  "author": "Denis Zatsepin <denis@zatsepin.me>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "watch": "tsc -w",
+    "build": "tsc",
+    "test": "jest",
+    "prettier": "prettier --write *.json",
+    "lint": "eslint src/**/*.ts --fix",
+    "precommit": "yarn prettier && yarn lint"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.8",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.15.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^3.0.7",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3"
+  }
+}
