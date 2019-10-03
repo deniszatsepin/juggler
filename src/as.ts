@@ -1,15 +1,19 @@
-import { OfSource, of } from './of'
+import { isAsyncIterable, isPromise } from './utils'
 
-export type AsSource<S> = OfSource<S> | AsyncIterableIterator<S>
+export type AsSource<S> = S | Promise<S> | AsyncIterable<S>
 
-export function isAsyncIterable(x: any) {
-  return x != null && typeof x[Symbol.asyncIterator] === 'function'
-}
-
-export function as<S>(source: AsSource<S>): AsyncIterableIterator<S> {
+export function as<S>(source: AsSource<S>): AsyncIterable<S> {
   if (isAsyncIterable(source)) {
-    return source as AsyncIterableIterator<S>
+    return source
   }
 
-  return of(source as OfSource<S>)
+  if (isPromise(source)) {
+    return (async function* promiseGenerator() {
+      yield await source
+    })()
+  }
+
+  return (async function* promiseGenerator() {
+    yield source
+  })()
 }

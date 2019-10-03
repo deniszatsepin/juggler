@@ -1,11 +1,11 @@
 import { as } from './as'
 
 export type Operator<T, R = T> = (
-  iterator: AsyncIterableIterator<T>
-) => AsyncIterableIterator<R>
+  iterator: AsyncIterable<T>
+) => AsyncIterable<R>
 
 export function pipe<S = any>(
-  source: AsyncIterableIterator<S>,
+  source: AsyncIterable<S>,
   ...operators: Operator<S>[]
 ) {
   let iterator = source
