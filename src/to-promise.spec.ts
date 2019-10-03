@@ -1,5 +1,5 @@
-import { as } from "./as"
-import { toPromise } from "./to-promise"
+import { as } from './as'
+import { toPromise } from './to-promise'
 
 describe('to-promise operator', () => {
   it('should transform iterator to promise', async () => {

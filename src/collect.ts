@@ -1,4 +1,4 @@
-import { Operator } from "./pipe"
+import { Operator } from './pipe'
 
 export function collect<S = any>(): Operator<S, S[]> {
   return function collectOperator(

@@ -1,4 +1,4 @@
-import of from './of'
+import { of } from './of'
 
 describe('of operator', () => {
   it('should create async iterator from parameters', async () => {
