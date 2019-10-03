@@ -1,6 +1,6 @@
-import of from './of'
+import { as } from './as'
 
-type Operator<T, R = T> = (
+export type Operator<T, R = T> = (
   iterator: AsyncIterableIterator<T>
 ) => AsyncIterableIterator<R>
 
@@ -11,7 +11,7 @@ export function pipe<S = any>(
   let iterator = source
 
   for (let i = 0, steps = operators.length; i < steps; ++i) {
-    iterator = of(operators[i](iterator))
+    iterator = as(operators[i](iterator))
   }
 
   return iterator

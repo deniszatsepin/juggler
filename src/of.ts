@@ -1,4 +1,6 @@
-function of<S>(...args: S[] | Promise<S>[]): AsyncIterableIterator<S> {
+export type OfSource<S> = S | Promise<S>
+
+export function of<S>(...args: OfSource<S>[]): AsyncIterableIterator<S> {
   async function* generator(): AsyncGenerator<S, any, unknown> {
     for (const el of args) {
       if (el instanceof Promise) {
@@ -11,5 +13,3 @@ function of<S>(...args: S[] | Promise<S>[]): AsyncIterableIterator<S> {
 
   return generator()
 }
-
-export default of
