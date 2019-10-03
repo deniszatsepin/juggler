@@ -8,6 +8,11 @@ export function map<S = any, R = S>(
   return function operator(
     source: AsyncIterableIterator<S>
   ): AsyncIterableIterator<R> {
-    return source as AsyncIterableIterator<R>
+    return (async function* generator() {
+      let i = 0
+      for await (const item of source) {
+        yield await selector(item, i++)
+      }
+    })()
   }
 }
