@@ -1,4 +1,4 @@
-import { Operator } from './pipe'
+import { Operator } from './types'
 
 export type Selector<S, R = S> = (value: S, index: number) => Promise<R> | R
 

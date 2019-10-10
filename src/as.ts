@@ -13,7 +13,7 @@ export function as<S>(source: AsSource<S>): AsyncIterable<S> {
     })()
   }
 
-  return (async function* promiseGenerator() {
+  return (async function* generator() {
     yield source
   })()
 }

@@ -8,7 +8,7 @@ describe('collect operator', () => {
     const result = await toPromise(
       pipe(
         of(1, 2, 3),
-        collect()
+        collect
       )
     )
 

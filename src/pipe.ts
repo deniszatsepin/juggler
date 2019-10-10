@@ -1,8 +1,5 @@
+import { Operator } from './types'
 import { as } from './as'
-
-export type Operator<T, R = T> = (
-  iterator: AsyncIterable<T>
-) => AsyncIterable<R | R[]>
 
 export function pipe<S = any>(
   source: AsyncIterable<S>,
