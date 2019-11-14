@@ -5,12 +5,7 @@ import { collect } from './collect'
 
 describe('collect operator', () => {
   it('should collect items from iterator into array', async () => {
-    const result = await toPromise(
-      pipe(
-        of(1, 2, 3),
-        collect
-      )
-    )
+    const result = await toPromise(pipe(of(1, 2, 3), collect))
 
     expect(result).toEqual([1, 2, 3])
   })
