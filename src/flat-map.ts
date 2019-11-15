@@ -1,12 +1,12 @@
 import { Operator } from './types'
 
-export type Transformator<S, R = S> = (
+export type IterableTransformator<S, R = S> = (
   value: S,
   index: number
 ) => AsyncIterable<R> | Promise<AsyncIterable<R>>
 
 export function flatMap<S = any, R = S>(
-  transform: Transformator<S, R>
+  transform: IterableTransformator<S, R>
 ): Operator<S, R> {
   return function flaatMapOperator(
     source: AsyncIterableIterator<S>
