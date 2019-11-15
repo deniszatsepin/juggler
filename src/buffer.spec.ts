@@ -20,6 +20,8 @@ describe('buffer operator', () => {
   })
 
   it('should throw error if buffer copacity is not a number', () => {
-    expect(buffer(('sdf' as unknown) as number)).toBeInstanceOf(TypeError)
+    expect(() => buffer(('string' as unknown) as number)).toThrowError(
+      /number or undefined/
+    )
   })
 })
