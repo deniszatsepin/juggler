@@ -4,7 +4,7 @@ import { compose } from './compose'
 import { toPromise } from './to-promise'
 
 describe('some operator', () => {
-  it('should check if at least one item in async iterator is satisfy the condition', async () => {
+  it('should check if at least one item in async iterator is satisfying a condition', async () => {
     const transformator = compose(some(el => el === 3))
     const result = await toPromise(transformator(of(1, 2, 3, 4, 5)))
 
