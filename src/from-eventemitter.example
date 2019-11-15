@@ -1,0 +1,39 @@
+import { createServer, ServerResponse, IncomingMessage } from 'http'
+import { eventGenerator } from './from-eventemitter'
+
+const server = createServer()
+
+server.on('connection', socket => {
+  // console.log('connection established')
+})
+
+server.on('request', (request: IncomingMessage, response: ServerResponse) => {
+  // console.log('event request: ', request.url)
+})
+
+async function pause(timeout: number) {
+  return new Promise(resolve => setTimeout(resolve, timeout))
+}
+
+server.on('close', () => console.log('server closed'))
+;(async function() {
+  const iterator = eventGenerator<[IncomingMessage, ServerResponse]>(
+    server,
+    'request'
+  )
+
+  for await (const event of iterator) {
+    const request = event[0]
+    const response = event[1]
+
+    console.log('iterator request: ', request.url)
+    await pause(5000)
+
+    console.log('iterator response: ', request.url)
+    response.writeHead(200, { 'Content-Type': 'text/plain' })
+    response.write('hello world')
+    response.end()
+  }
+})()
+
+server.listen(8888)
