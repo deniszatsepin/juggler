@@ -8,13 +8,13 @@ interface AsyncResolver<T> {
 export async function* eventGenerator<T>(
   emitter: EventEmitter,
   eventName: string,
-  copacity?: number
-): AsyncGenerator {
+  copacity: number = Infinity
+): AsyncGenerator<T> {
   const buffer: T[] = []
   const promises: AsyncResolver<T>[] = []
 
   emitter.on(eventName, (...args) => {
-    const payload = (args as unknown) as T
+    const payload: T = (args as unknown) as T
 
     if (promises.length) {
       const { resolve } = promises.shift()
@@ -22,12 +22,14 @@ export async function* eventGenerator<T>(
     } else {
       if (buffer.length <= copacity) {
         buffer.push(payload)
+      } else {
+        console.log('drop event')
       }
     }
   })
 
   while (true) {
-    const val = await new Promise((resolve, reject) => {
+    const val: T = await new Promise((resolve, reject) => {
       if (buffer.length) {
         resolve(buffer.shift())
       } else {
