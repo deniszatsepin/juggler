@@ -1,5 +1,3 @@
-import { Subscription } from './subscription'
-
 export interface Subscriber<T> {
   onNext(item: T): void
 
