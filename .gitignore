@@ -92,3 +92,6 @@ typings/
 # IDE
 .idea
 .vscode
+
+# Generated
+dist
