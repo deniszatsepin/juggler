@@ -13,3 +13,30 @@ export function of<S>(...args: OfSource<S>[]): AsyncIterable<S> {
     }
   })()
 }
+
+export function off<S>(...args: S[]): AsyncIterableIterator<S> {
+  const i = args.length
+  let current = 0
+  let value
+
+  return {
+    [Symbol.asyncIterator]() {
+      current = 0
+      return this
+    },
+    async next() {
+      if (current < i) {
+        value = args[current++]
+
+        return {
+          value,
+        }
+      }
+
+      return {
+        done: true,
+        value,
+      }
+    },
+  }
+}
